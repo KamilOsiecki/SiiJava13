@@ -8,7 +8,7 @@
             <!--                %30(%boldYellow(%class{0})) %green(%d{yyyy-MM-dd HH:mm:ss}) %boldYellow(%marker - %msg%n)-->
             <!--            </Pattern>-->
             <Pattern>
-                %boldGreen(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %boldYellow(%class{0} %marker- %msg%n)
+                %green(%d{yyyy-MM-dd HH:mm:ss}) %-5level%yellow(%class{0} %marker- %msg%n)
             </Pattern>
         </layout>
     </appender>

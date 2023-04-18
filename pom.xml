@@ -24,7 +24,7 @@
         <logback.jakcson.verion>0.1.5</logback.jakcson.verion>
         <logstash.version>7.3</logstash.version>
         <lombok.version>1.18.26</lombok.version>
-        <jackson-dataformat-yaml.version>2.14.1</jackson-dataformat-yaml.version>
+        <jackson-dataformat-yaml.version>2.14.2</jackson-dataformat-yaml.version>
         <jackson-databind.version>2.15.0-rc2</jackson-databind.version>
         <javafaker.version>1.0.2</javafaker.version>
     </properties>

@@ -1,41 +1,24 @@
 package tests.search;
 
-import org.junit.jupiter.api.Assertions;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import pages.search.SearchDropdownPage;
 import pages.search.SearchPage;
-import testBase.TestBase;
-
-import java.lang.reflect.InvocationTargetException;
-import java.time.Duration;
-import java.util.List;
+import base.TestBase;
 
 public class SearchDropdownTest extends TestBase {
 
-    @Test
+    @ParameterizedTest
+    @MethodSource("tests.util_test.UtilTest#searchTestDataProvider")
     @DisplayName("Search dropdown test")
     @Tag("Search")
-    public void shouldVerifyIfDropdownContainsValue() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-
+    public void shouldVerifyIfDropdownContainsValue(String expectedValue) {
         at(SearchPage.class)
-                .provideProductName("HUMMINGBIRD"); // podmien na element
-
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        WebElement element = driver.findElement(By.cssSelector("#ui-id-1"));
-        wait.until(ExpectedConditions.visibilityOf(element));
-        List<WebElement> productRows = driver.findElements(By.cssSelector("#ui-id-1>li"));
-        for (WebElement productRow : productRows) {
-
-            String text = productRow.getText();
-            System.out.println(text);
-            //assert that...
-        }
+                .provideProductName(expectedValue);
+        Assertions.assertThat(at(SearchDropdownPage.class).getSearchResults()).allMatch(
+                actual -> actual.contains(expectedValue));
     }
 }

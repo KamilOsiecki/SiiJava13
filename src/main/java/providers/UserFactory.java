@@ -22,17 +22,18 @@ public class UserFactory {
                 .password(faker.internet().password(10, 15, true, true, true))
                 .customerPrivacy(true)
                 .generalTerms(true)
-                .and().build();
+                .and()
+                .build();
     }
 
     public User getAlreadyRegisteredUser() {
         return User.builder()
-                .firstName(data.getProperty("firstName"))
-                .lastName(data.getProperty("lastName"))
-                .email(data.getProperty("email"))
-                .password(data.getProperty("password"))
-                .customerPrivacy(Boolean.parseBoolean(data.getProperty("customerPrivacy")))
-                .generalTerms(Boolean.parseBoolean(data.getProperty("generalTerms")))
+                .firstName(data.getProperty("userFirstName"))
+                .lastName(data.getProperty("userLastName"))
+                .email(data.getProperty("userEmail"))
+                .password(data.getProperty("userPassword"))
+                .customerPrivacy(Boolean.parseBoolean(data.getProperty("userCustomerPrivacy")))
+                .generalTerms(Boolean.parseBoolean(data.getProperty("userGeneralTerms")))
                 .and().build();
     }
 }

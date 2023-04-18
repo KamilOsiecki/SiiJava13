@@ -1,3 +1,4 @@
+import models.Invoice;
 import models.User;
 import org.openqa.selenium.WebElement;
 import pages.product.ProductMiniaturePage;
@@ -8,7 +9,6 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-
 
 //        User user = User.builder()
 //                .firstName("Jan")

@@ -12,54 +12,46 @@ public class ProductGridPage extends BasePage {
     public ProductGridPage(WebDriver driver) {
         super(driver);
     }
-
-    @FindBy(css = ".product-miniature")
+    @FindBy(css = ".product-description")
     private List<WebElement> productMiniatures;
 
-/*
-    public ProductDetailsPage openProductWithName(String productName){
-        return new ProductDetailsPage(driver);
-    }
-*/
-
-    public List<ProductMiniaturePage> getProducts(){
+    public List<ProductMiniaturePage> getProducts() {
         List<ProductMiniaturePage> productMiniaturePages = new ArrayList<>();
 
-        for (WebElement element : productMiniatures){
+        for (WebElement element : productMiniatures) {
             productMiniaturePages.add(new ProductMiniaturePage(driver, element));
         }
         return productMiniaturePages;
     }
 
-    //        public List<E> E getProducts(){
-//        List<E> generic = new ArrayList<E>();
-//
-//        for (WebElement element : productMiniatures){
-//            generic.add(new E(driver, element));
-//        }
-//        return generic;
-//    }
-    public String getRandomProductName(){
+    public String getRandomProductName() {
         ProductMiniaturePage product = new ProductMiniaturePage(driver, getRandomElement(productMiniatures));
         return product.getTitle();
     }
 
+    public int getProductsListSize() {
+        return productMiniatures.size();
+    }
 
+    public int filterProductsByPrice(float lowerHandleValue, float higherHandleValue) {
+        return (int) getProducts().stream()
+                .filter(products -> products.getPrice() >= lowerHandleValue)
+                .filter(products -> products.getPrice() <= higherHandleValue)
+                .count();
+    }
 
+    public void openProduct(String productName){
+        for (ProductMiniaturePage productMiniaturePage : getProducts()){
+            if (productMiniaturePage.getTitle().equals(productName)){
+                productMiniaturePage.goToProduct();
+                break;
+            }
+        }
+    }
 
-
-
-//    public String getProductName(){
-//        ProductMiniaturePage product = new ProductMiniaturePage(driver, )
-//    }
+    public ProductGridPage openRandomProduct(){
+        ProductMiniaturePage product = new ProductMiniaturePage(driver, getRandomElement(productMiniatures));
+        product.goToProduct();
+        return this;
+    }
 }
-
-
-//    public List<Class<T>> T,U getProducts(T, U){
-//        Class<T> generic = new ArrayList<T>();
-//
-//        for (T element : List<U>){
-//            generic.add(new Class<T>(driver, element));
-//        }
-//        return generic;
-//    }

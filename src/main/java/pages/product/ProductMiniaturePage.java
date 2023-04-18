@@ -5,8 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pages.base.BasePage;
 
-import java.math.BigDecimal;
-
 public class ProductMiniaturePage extends BasePage {
     public ProductMiniaturePage(WebDriver driver, WebElement parent) {
         super(driver, parent);
@@ -14,15 +12,18 @@ public class ProductMiniaturePage extends BasePage {
 
     @FindBy(css = ".product-title")
     private WebElement title;
-
     @FindBy(css = ".price")
     private WebElement price;
 
-
     public String getTitle() {
-        return title.getText();
+        return getText(title);
     }
-//    public BigDecimal getPrice() {
-//        return getPrice(price);
-//    }
+
+    public float getPrice() {
+        return getPrice(price);
+    }
+
+    public void goToProduct(){
+        click(title);
+    };
 }

@@ -1,7 +1,6 @@
 package pages.search;
 
 import configuration.FileHandler;
-import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +19,7 @@ public class SearchPage extends BasePage {
     @FindBy(xpath = "//button/i")
     private WebElement searchButton;
 
-    @FindBy(css = "#js-product-list-header")
+    @FindBy(css = "#js-category-list-header")
     private WebElement checkpointElement;
 
     Properties data = FileHandler.getSearchTestsData();
@@ -36,8 +35,9 @@ public class SearchPage extends BasePage {
 
     public void initSearch() {
         click(searchButton);
-        waitForElementToBeVisible(checkpointElement);
-        Assertions.assertThat(getCheckpointElementText())
-                .isEqualTo(data.getProperty("searchResultCheckpoint"));
+        //tutaj mozna to wrzucic do drivera
+//        waitForElementToBeVisible(checkpointElement);
+//        Assertions.assertThat(getCheckpointElementText())
+//                .isEqualTo(data.getProperty("searchResultCheckpoint"));
     }
 }

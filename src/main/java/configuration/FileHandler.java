@@ -1,13 +1,11 @@
 package configuration;
 
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class FileHandler {
-    public static Properties getAlreadyRegisteredUserData(){
+    public static Properties getAlreadyRegisteredUserData() {
         String alreadyRegisteredUserData = "registeredUserData.properties";
         return loadFile(alreadyRegisteredUserData);
     }
@@ -17,14 +15,19 @@ public class FileHandler {
         return loadFile(pageUrlData);
     }
 
-    public static Properties getBasePageData(){
+    public static Properties getBasePageData() {
         String basePageData = "basePageData.properties";
         return loadFile(basePageData);
     }
 
-    public static Properties getSearchTestsData(){
+    public static Properties getSearchTestsData() {
         String searchTestsData = "searchTestData.properties";
         return loadFile(searchTestsData);
+    }
+
+    public static Properties getDefaultInvoiceData(){
+        String defaultInvoiceData = "defaultInvoiceData.properties";
+            return loadFile(defaultInvoiceData);
     }
 
     public static Properties loadFile(String path) {

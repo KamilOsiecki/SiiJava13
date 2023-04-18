@@ -1,5 +1,8 @@
 package models;
 
+import lombok.Getter;
+
+@Getter
 public class User {
     private String socialTitle;
     private String firstName;
@@ -16,8 +19,8 @@ public class User {
         return new Builder();
     }
 
-    public static class Builder implements User.NeedFirstName, User.NeedLastName, User.NeedEmail, User.NeedPassword,
-            User.NeedCustomerPrivacy, User.NeedGeneralTerms, User.CanBeBuild {
+    public static class Builder implements NeedFirstName, NeedLastName, NeedEmail, NeedPassword,
+            NeedCustomerPrivacy, NeedGeneralTerms, CanBeBuild {
 
         private String socialTitle;
         private String firstName;
@@ -154,38 +157,6 @@ public class User {
         return "FirstName| " + firstName
                 + "\nLastName|  " + lastName
                 + "\nEmail| " + email
-                + "\nPassword| " + password
-                + "\nCustomerPrivacy| " + customerPrivacy
-                + "\nGeneralTerms| " + generalTerms;
+                + "\nPassword| " + password;
     }
 }
-/*
-    public User build() {
-        if (firstName.isEmpty()) {
-            throw new IllegalStateException("First name field cannot is mandatory");
-        }
-        if (lastName.isEmpty()) {
-            throw new IllegalStateException("Last name field cannot is mandatory");
-        }
-        if (email.isEmpty()) {
-            throw new IllegalStateException("Email field is mandatory");
-        }
-        if (password.isEmpty()) {
-            throw new IllegalStateException("Password field is mandatory");
-        }
-        if (!customerPrivacy) {
-            throw new IllegalStateException("Customer privacy must be accepted");
-        }
-        if (!generalTerms) {
-            throw new IllegalStateException("General terms must be accepted");
-        }
-        User user = new User();
-        user.firstName = this.firstName;
-        user.lastName = this.lastName;
-        user.email = this.email;
-        user.password = this.password;
-        user.customerPrivacy = this.customerPrivacy;
-        user.generalTerms = this.customerPrivacy;
-        return user;
-    }
-*/
